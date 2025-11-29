@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./App.css";
 
 // 🔑 SheCodes Dictionary API Key
-const DICTIONARY_API_KEY = "cf40cbba3b587f08e75d70b82t7ad6ff";
+const DICTIONARY_API_KEY = "cf40cbba3b587f08e75d7ob82t7ad6ff";
 
 // 🔑 Pexels API Key (für Bilder)
 const PEXELS_API_KEY =
@@ -17,7 +17,7 @@ export default function App() {
 
   async function search(event) {
     event.preventDefault();
-    const query = keyword.trim();
+    const query = keyword.trim().toLowerCase();
     if (!query) return;
 
     const dictionaryUrl = `https://api.shecodes.io/dictionary/v1/define?word=${encodeURIComponent(
@@ -41,12 +41,11 @@ export default function App() {
 
       setResults(dictData);
 
-      // 🖼 Bilder nur laden, wenn Pexels-Key vorhanden ist
+      // 🖼 Bilder nur laden, wenn ein *echter* Pexels-Key verwendet wird
+      // 🖼 Bilder laden, sobald irgendein Pexels-Key gesetzt ist
       if (
-        PEXELS_API_KEY &&
-        !PEXELS_API_KEY.startsWith(
-          "cXKgQL3uxxsgo3AmDiYe9AzVLWOvKKg3tR5GwuFqMnSGm9kzWT12fNpc"
-        )
+        typeof PEXELS_API_KEY === "string" &&
+        PEXELS_API_KEY.trim().length > 0
       ) {
         const photosUrl = `https://api.pexels.com/v1/search?query=${encodeURIComponent(
           query
@@ -59,6 +58,8 @@ export default function App() {
         if (photosResponse.ok) {
           const photosData = await photosResponse.json();
           setPhotos((photosData.photos || []).slice(0, 9)); // max. 9 Bilder
+        } else {
+          console.error("Pexels error", photosResponse.status);
         }
       }
     } catch (err) {
@@ -199,13 +200,15 @@ export default function App() {
 
       {/* Such-Section */}
       <section className="dictionary-section card-strong mb-4">
-        <h2 className="section-title mb-3">What do you want to look up?</h2>
+        <h2 className="section-title mb-3">
+          What word do you want to look up?
+        </h2>
 
         <form className="search-form" onSubmit={search}>
           <div className="input-group search-input-group">
             <input
               type="search"
-              placeholder="For example: love, code, sunset…"
+              placeholder="Search an English term..."
               className="form-control search-input"
               onChange={(event) => setKeyword(event.target.value)}
             />
