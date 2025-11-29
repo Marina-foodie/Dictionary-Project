@@ -42,7 +42,12 @@ export default function App() {
       setResults(dictData);
 
       // 🖼 Bilder nur laden, wenn Pexels-Key vorhanden ist
-      if (PEXELS_API_KEY && !PEXELS_API_KEY.startsWith("YOUR_")) {
+      if (
+        PEXELS_API_KEY &&
+        !PEXELS_API_KEY.startsWith(
+          "cXKgQL3uxxsgo3AmDiYe9AzVLWOvKKg3tR5GwuFqMnSGm9kzWT12fNpc"
+        )
+      ) {
         const photosUrl = `https://api.pexels.com/v1/search?query=${encodeURIComponent(
           query
         )}&per_page=9`;
