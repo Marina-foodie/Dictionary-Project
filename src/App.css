@@ -1,0 +1,223 @@
+/* 🎨 Color Theme */
+:root {
+  --bg: #f4f6f8;
+  --card-bg: #ffffff;
+  --accent-green: #057840;
+  --accent-green-light: rgba(5, 120, 64, 0.1);
+  --accent-green-soft: rgba(5, 120, 64, 0.08);
+
+  --accent-berry: #6b0a43;
+  --accent-berry-light: rgba(107, 10, 67, 0.1);
+  --accent-berry-soft: rgba(107, 10, 67, 0.08);
+
+  --text-main: #1e293b;
+  --text-muted: #6b7280;
+  --radius-lg: 22px;
+  --shadow-soft: 0 20px 45px rgba(15, 23, 42, 0.08);
+}
+
+body {
+  background: var(--bg: rgba(5, 120, 64, 0.03));
+  font-family: "Inter", system-ui, Arial, sans-serif;
+  color: var(--text-main);
+}
+
+.App {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* 🔹 Header */
+.app-header {
+  margin-bottom: 36px;
+}
+
+.app-logo {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--accent-berry));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 22px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.app-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.app-subtitle {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+/* 🔍 Search Section */
+.search-input-group {
+  border-radius: 999px;
+  overflow: hidden;
+  box-shadow: 0 0 0 2px rgba(107, 10, 67, 0.15);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.search-input {
+  border: none;
+  padding: 16px 20px;
+  font-size: 15px;
+}
+
+.search-input:focus {
+  box-shadow: none;
+}
+
+.search-button {
+  background: var(--accent-green);
+  color: white;
+  padding-inline: 24px;
+  border: none;
+  font-weight: 600;
+}
+
+.search-button:hover {
+  background: #046333;
+}
+
+.search-hint span {
+  color: var(--accent-green);
+}
+
+/* 🗂 Cards / Sections */
+.dictionary-section {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 28px;
+  margin-bottom: 28px;
+
+  /* Sichtbarer Rahmen */
+  border: 2.5px solid rgba(0, 0, 0, 0.12);
+
+  /* Klarer, moderner Schatten */
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.06);
+
+  /* Leicht abgehoben vom Hintergrund */
+  background-color: #ffffff;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+/* 🔊 Word Display */
+.word-title {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.word-phonetic {
+  color: var(--text-muted);
+  font-size: 16px;
+}
+
+.icon-circle-button {
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  background: var(--accent-green-light);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-circle-button i {
+  color: var(--accent-green);
+}
+
+/* 🏷 Wortarten (noun, verb etc.) */
+.part-of-speech-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: var(--accent-berry-light);
+  color: var(--accent-berry);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* 📄 Definitions */
+.definition-block {
+  background: white;
+  border-radius: 14px;
+  padding: 18px 20px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
+}
+
+.definition-block + .definition-block {
+  margin-top: 14px;
+}
+
+.definition-text {
+  font-size: 15px;
+  margin-bottom: 6px;
+}
+
+.example-text {
+  padding-left: 14px;
+  border-left: 4px solid var(--accent-green);
+  color: var(--accent-berry);
+  font-style: italic;
+  margin-top: 6px;
+}
+
+/* 🖼 Photos */
+.photos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+.photo-card {
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.14);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.photo-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 26px 50px rgba(15, 23, 42, 0.18);
+}
+
+.photo-image {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+/* 🌀 Loading Spinner */
+.loading-wrapper p {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+/* 📱 Responsive */
+@media (max-width: 576px) {
+  .dictionary-section {
+    padding: 18px 16px;
+  }
+  .word-title {
+    font-size: 22px;
+  }
+  .search-input {
+    padding: 14px;
+  }
+}
